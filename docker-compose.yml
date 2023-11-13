@@ -1,0 +1,25 @@
+version: "1.0"
+
+services:
+  api_elias:
+    build: .
+    ports:
+      - "8000:80"
+    environment:
+      - DB_HOST=api_learning_sql
+    depends_on:
+      - api_learning_sql
+  api_learning_sql:
+    image: postgres:13
+    environment:
+    - POSTGRES_DB=learning_sql
+    - POSTGRES_USER=elias
+    - POSTGRES_PASSWORD=secret_123
+    ports:
+      - "5432:5432"  # Expose the PostgreSQL container's port
+    volumes:
+      - postgres_data:/var/lib/postgres/data/
+
+volumes:
+  postgres_data:
+    driver: local
