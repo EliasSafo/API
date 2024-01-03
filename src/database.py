@@ -4,8 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-db_host = os.environ["DB_HOST"]
-print(db_host)
+db_host = os.environ.get("DB_HOST","localhost")
+
 SQLALCHEMY_DATABASE_URL = (f"postgresql+psycopg2://elias:secret_123@{db_host}:5432"
                           "/learning_sql")
 

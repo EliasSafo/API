@@ -3,6 +3,7 @@ version: "1.0"
 services:
   api_elias:
     build: .
+    restart: always
     ports:
       - "8000:80"
     environment:

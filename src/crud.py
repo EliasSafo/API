@@ -28,10 +28,9 @@ def create_store(db: Session, store: schemas.StoreCreate):
 def update_store_address(db: Session,address: str,store_id: int):
     store = db.query(models.Store).filter(models.Store.id == store_id).first()
     if store:
-        # Step 3: Modify the column value
+
         store.address = address
 
-        # Step 4: Commit the changes to the database
         db.commit()
     return store
 

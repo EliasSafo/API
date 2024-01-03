@@ -54,8 +54,9 @@ async def get_stores(skip: int = 0, limit: int = 100, db: Session = Depends(get_
 @app.get("/items", response_model=schemas.Store)
 async def get_store_by_email(email: str, db: Session = Depends(get_db)):
     store = crud.get_store_by_email(db, email=email)
-    return store
-
+    if store:
+        return store
+    raise HTTPException(status_code=400, detail="Store ID doesn't exist")
 
 @app.put("/stores/{store_address}", response_model=schemas.Store)
 async def update_store_address(new_address: str, id: int,
